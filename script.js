@@ -23,33 +23,32 @@ function playGame(userChoice){
         else{
             userWon = compChoice === "rock" ? false : true;
         }
-        showWinner(userWon);
+        showWinner(userWon, userChoice, compChoice);
     }
 }
 
 // showing Winner
-function showWinner(userWon){
+function showWinner(userWon, userChoice, compChoice){
     if(userWon){
         userCount++;
         userScore.innerText = userCount;
-        msg.innerText = "You Won!";
+        msg.innerText = `You Won!. your ${userChoice} defeated ${compChoice}`;
         msg.style.backgroundColor = "green";
         console.log("You Won!");
     }else{
         compCount++;
         compScore.innerText = compCount;
-        msg.innerText = "Computer Won!";
+        msg.innerText = `Computer Won!. ${compChoice} defeated your ${userChoice}`;
         msg.style.backgroundColor = "red";
         console.log("Computer Won!");
     }
 }
 
 
-
-
 // Draw Game 
 function drawGame(){
     msg.innerText = "It's a draw!";
+    msg.style.backgroundColor = "#081b31";
     console.log("It's a draw!");
 }
 
