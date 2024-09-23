@@ -1,10 +1,57 @@
+let userCount = 0;
+let compCount = 0;
+
+const msg  = document.querySelector("#msg");
+
+let userScore = document.querySelector("#user-score");
+let compScore = document.querySelector("#comp-score");
+
+// Play Game
 function playGame(userChoice){
-    console.log(userChoice);
+    console.log("You choose: ",userChoice);
     let compChoice = comSelection();
+    console.log("Computer Choose: ", compChoice);
+    let userWon = true;
     if(compChoice === userChoice){
-        console.log("It's a tie!");
+        drawGame();
+    }else{
+        if(userChoice === "rock"){
+            userWon = compChoice === "paper" ? false : true;
+        }else if(userChoice === "paper"){
+            userWon = compChoice === "scissors" ? false : true;
+        }
+        else{
+            userWon = compChoice === "rock" ? false : true;
+        }
+        showWinner(userWon);
     }
-};
+}
+
+// showing Winner
+function showWinner(userWon){
+    if(userWon){
+        userCount++;
+        userScore.innerText = userCount;
+        msg.innerText = "You Won!";
+        msg.style.backgroundColor = "green";
+        console.log("You Won!");
+    }else{
+        compCount++;
+        compScore.innerText = compCount;
+        msg.innerText = "Computer Won!";
+        msg.style.backgroundColor = "red";
+        console.log("Computer Won!");
+    }
+}
+
+
+
+
+// Draw Game 
+function drawGame(){
+    msg.innerText = "It's a draw!";
+    console.log("It's a draw!");
+}
 
 // Getting user Selection
 const choices = document.querySelectorAll(".choose");
@@ -27,6 +74,4 @@ function randomNum(){
     let rand = Math.floor(Math.random() * 3);
     return (rand);
 }
-
-
 
